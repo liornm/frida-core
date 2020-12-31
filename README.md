@@ -1,3 +1,15 @@
+# Anbox Frida Workaround
+
+After debugging this issue today I have discovered that frida-agent-32.so causes zygote to crash for some reason. After zygote crashes Anbox immediately crashes as well.
+
+Because I am lazy, I have decided to look for a workaround instead of fixing this bug. After trial and error I have found that this bug is not present in the 64 bit version of the agent (frida-agent-64.so). Therefore, after disabling 32 bit agent Frida can still inject and execute every 64 bit or libhoudini (arm/arm64) app.
+
+In order to prevent frida-server from injecting the agent to zygote (32 bit) I have simply modified two lines, see [the last commit](https://github.com/liornm/frida-core/commit/7a5d8ffcad7209f5e28265ae360504a6a09c96b2).
+
+If you want to avoid the hassle of compiling frida-server yourself you can just use my [compiled version](https://github.com/liornm/frida-core/releases/tag/anbox-workaround).
+
+
+
 # frida-core
 
 Frida core library intended for static linking into bindings.
