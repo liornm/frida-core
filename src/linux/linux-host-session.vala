@@ -581,7 +581,7 @@ namespace Frida {
 			try {
 				foreach (HostProcessInfo info in System.enumerate_processes ()) {
 					var name = info.name;
-					if (name == "zygote" || name == "zygote64") {
+					if (name == "zygote64") {
 						var pid = info.pid;
 						if (zygote_agents.has_key (pid))
 							continue;

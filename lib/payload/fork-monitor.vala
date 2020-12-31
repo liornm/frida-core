@@ -58,7 +58,7 @@ namespace Frida {
 				try {
 					string cmdline;
 					FileUtils.get_contents ("/proc/self/cmdline", out cmdline);
-					if (cmdline == "zygote" || cmdline == "zygote64") {
+					if (cmdline == "zygote64") {
 						var set_argv0 = Gum.Module.find_export_by_name ("libandroid_runtime.so", "_Z27android_os_Process_setArgV0P7_JNIEnvP8_jobjectP8_jstring");
 						if (set_argv0 != null) {
 							interceptor.attach (set_argv0, listener, (void *) HookId.SET_ARGV0);
